@@ -76,15 +76,15 @@ public class CartResource {
         }
         builder.add("Counter", counter);
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-        Double subtotal = 0.0;
+        double subtotal = 0.0;
         while (names.hasMoreElements()) {
             String name = names.nextElement();
             String price = session.getAttribute(name).toString();
             arrayBuilder.add(name + " | $" + price);
             try {
-                subtotal += Double.valueOf(price).doubleValue();
+                subtotal += Double.parseDouble(price);
             } catch (NumberFormatException e) {
-                throw new RuntimeException(e);
+                System.err.println("Ignoring: " + e.getMessage());
             }
         }
         builder.add("cart", arrayBuilder);
