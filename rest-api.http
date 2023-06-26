@@ -1,0 +1,23 @@
+### Liste ausgeben
+GET http://localhost:31000/guide-sessions/app/cart
+Accept: application/json
+
+<> 2023-06-21T163547.200.json
+<> 2023-06-21T163257.200.json
+<> 2023-06-21T163214.200.json
+<> 2023-06-21T163053.200.html
+<> 2023-06-21T162834.200.html
+
+### Wurst hinzufügen
+POST http://localhost:31000/guide-sessions/app/cart/wurstl&100
+Accept: */*
+
+<> 2023-06-21T163513.200.txt
+<> 2023-06-21T163047.404.html
+
+### Eis hinzufügen
+POST http://localhost:31000/guide-sessions/app/cart/eis&1.60
+Accept: */*
+
+<> 2023-06-21T163542.200.txt
+

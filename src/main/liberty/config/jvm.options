@@ -1,0 +1,2 @@
+-Djava.net.preferIPv4Stack=true
+-Djgroups.dns.query=infinispan-embedded.default.svc.cluster.local

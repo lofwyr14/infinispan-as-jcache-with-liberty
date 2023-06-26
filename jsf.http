@@ -1,0 +1,2 @@
+GET http://localhost:31000/guide-sessions/index.xhtml
+Accept: */*
