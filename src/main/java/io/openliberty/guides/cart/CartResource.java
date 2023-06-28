@@ -4,6 +4,7 @@ import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 
+import javax.inject.Inject;
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
@@ -23,6 +24,9 @@ import java.util.Enumeration;
 public class CartResource {
 
     private Integer counter;
+
+    @Inject
+    private SessionInfo sessionInfo;
 
     public Integer getCounter() {
         return counter;
@@ -89,6 +93,7 @@ public class CartResource {
         }
         builder.add("cart", arrayBuilder);
         builder.add("subtotal", subtotal);
+        builder.add("sessionInfoCounter", sessionInfo.getCounter());
         return builder.build();
     }
 
