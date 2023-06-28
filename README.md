@@ -13,7 +13,7 @@ kubectl apply -f kubernetes.yaml
 
 Runterfahren
 ```
-kubectl apply -f kubernetes.yaml
+kubectl delete -f kubernetes.yaml
 ```
 
 Browser
