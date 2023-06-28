@@ -1,17 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-
-<f:view xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
-        xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
-        locale="en">
-
-     
-    <h:outputText value="Counter: #{sessionInfo.counter}"/>
-     
-    <h:outputText value="Pod Name: #{sessionInfo.myPodName}"/>
-     
-    <h:outputText value="Pod IP: #{sessionInfo.myPodIp}"/>
-     
-    <h:outputText value="Session: #{sessionInfo.sessionId}"/>
-     
-
-</f:view>
+<f:view xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        locale="en"
+><h:outputText value="#{sessionInfo.counter}"
+/>;<h:outputText value="#{sessionInfo.myPodName}"
+/>;<h:outputText value="#{sessionInfo.myPodIp}"
+/>;<h:outputText value="#{sessionInfo.sessionId}"
+/></f:view>
