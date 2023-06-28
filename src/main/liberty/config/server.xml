@@ -1,4 +1,5 @@
-<server description="Liberty Server for Sessions Management">
+<server xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="server.xsd"
+        description="Liberty Server for Sessions Management">
 
     <featureManager>
         <feature>jsonb-1.0</feature>
@@ -21,7 +22,8 @@
         <fileset dir="${shared.resource.dir}/infinispan"/>
     </library>
 
-    <httpSessionCache cacheManagerRef="CacheManager" writeFrequency="END_OF_SERVLET_SERVICE"
+    <httpSessionCache cacheManagerRef="CacheManager"
+                      writeFrequency="END_OF_SERVLET_SERVICE"
                       writeContents="ALL_SESSION_ATTRIBUTES"/>
 
     <cacheManager id="CacheManager" uri="file:${server.config.dir}/infinispan.xml">
