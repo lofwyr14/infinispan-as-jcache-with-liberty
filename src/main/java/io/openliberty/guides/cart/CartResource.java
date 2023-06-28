@@ -97,6 +97,22 @@ public class CartResource {
         return builder.build();
     }
 
+    @GET
+    @Path("counter")
+    @Produces(MediaType.TEXT_PLAIN)
+    @APIResponse(responseCode = "200")
+    @Operation(summary = "Returns the counter.")
+    public String getCounter(@Context HttpServletRequest request) {
+        return String.valueOf(sessionInfo.getCounter()) +
+            ';' +
+            sessionInfo.getMyPodName() +
+            ';' +
+            sessionInfo.getMyPodIp() +
+            ';' +
+            request.getSession().getId() +
+            ';';
+    }
+
     private String getHostname() {
         String hostname = System.getenv("HOSTNAME");
         if (hostname == null) {
