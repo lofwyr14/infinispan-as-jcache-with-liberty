@@ -6,6 +6,12 @@ mvn clean package
 docker build -t cart-app:1.0-SNAPSHOT .
 ```
 
+oder mit Tobago
+```
+mvn clean package -Ptobago
+docker build -t cart-app:1.0-SNAPSHOT .
+```
+
 Hochfahren
 ```
 kubectl apply -f kubernetes.yaml

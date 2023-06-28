@@ -12,6 +12,7 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <infinispan.version>11.0.17.Final</infinispan.version>
+        <tobago.version>5.7.2</tobago.version>
         <!-- Liberty configuration -->
         <hazelcast.path>${user.home}/.m2/repository/com/hazelcast/hazelcast/</hazelcast.path>
         <liberty.var.default.http.port>9080</liberty.var.default.http.port>
@@ -153,4 +154,23 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>tobago</id>
+            <dependencies>
+                <dependency>
+                    <groupId>org.apache.myfaces.tobago</groupId>
+                    <artifactId>tobago-core</artifactId>
+                    <version>${tobago.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.apache.myfaces.tobago</groupId>
+                    <artifactId>tobago-theme-standard</artifactId>
+                    <version>${tobago.version}</version>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
+
 </project>
