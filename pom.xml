@@ -35,15 +35,15 @@
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
-        
-        <!-- Hazelcast Dependency
+
+        <!-- Hazelcast -->
         <dependency>
             <groupId>com.hazelcast</groupId>
             <artifactId>hazelcast</artifactId>
             <version>5.2.3</version>
             <scope>test</scope>
-        </dependency-->
-        <dependency>
+        </dependency>
+        <!--dependency>
             <groupId>org.infinispan</groupId>
             <artifactId>infinispan-jcache</artifactId>
             <version>${infinispan.version}</version>
@@ -52,7 +52,7 @@
             <groupId>org.infinispan</groupId>
             <artifactId>infinispan-cdi-embedded</artifactId>
             <version>${infinispan.version}</version>
-        </dependency>
+        </dependency-->
 
         <!-- For tests -->
         <dependency>
@@ -108,20 +108,15 @@
                         </configuration>
                     </execution>
                     <execution>
-                        <id>copy infinispan dependencies for docker</id>
+                        <id>copy hazelcast dependencies for docker</id>
                         <phase>package</phase>
                         <goals>
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/docker-liberty/lib/infinispan
+                            <outputDirectory>${project.build.directory}/docker-liberty/lib/hazelcast
                             </outputDirectory>
-                            <includeGroupIds>
-                                org.infinispan,org.jgroups,com.github.ben-manes.caffeine,org.jboss.logging,
-                                org.jboss.threads,io.reactivex.rxjava3,org.reactivestreams,org.wildfly.common
-                            </includeGroupIds>
-                            <excludeArtifactIds>infinispan-jcache-remote,infinispan-client-hotrod
-                            </excludeArtifactIds>
+                            <includeGroupIds>com.hazelcast</includeGroupIds>
                         </configuration>
                     </execution>
                 </executions>

@@ -1,4 +1,4 @@
-# Mit Infinispan
+# Mit Hazelcast
 
 Bauen
 ```
@@ -10,6 +10,11 @@ oder mit Tobago
 ```
 mvn clean package -Ptobago
 docker build -t cart-app:1.0-SNAPSHOT .
+```
+
+Hazelcast Roles und Bindings anlegen (einmalig):
+```
+kubectl apply -f hazelcast-rbac.yaml 
 ```
 
 Hochfahren

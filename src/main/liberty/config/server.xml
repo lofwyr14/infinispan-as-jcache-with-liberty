@@ -19,14 +19,14 @@
                   id="defaultHttpEndpoint" host="*"/>
 
     <library id="JCacheLib">
-        <fileset dir="${shared.resource.dir}/infinispan"/>
+        <fileset dir="${shared.resource.dir}/hazelcast"/>
     </library>
 
     <httpSessionCache cacheManagerRef="CacheManager"
                       writeFrequency="END_OF_SERVLET_SERVICE"
                       writeContents="ALL_SESSION_ATTRIBUTES"/>
 
-    <cacheManager id="CacheManager" uri="file:${server.config.dir}/infinispan.xml">
+    <cacheManager id="CacheManager" uri="file:${server.config.dir}/hazelcast-config.xml">
         <cachingProvider jCacheLibraryRef="JCacheLib"/>
     </cacheManager>
 

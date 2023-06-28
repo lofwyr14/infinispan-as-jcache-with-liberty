@@ -21,6 +21,6 @@ LABEL \
 
 COPY --chown=1001:0 src/main/liberty/config /config/
 COPY --chown=1001:0 target/guide-sessions.war /config/apps
-COPY --chown=1001:0 target/docker-liberty/lib/infinispan /opt/ol/wlp/usr/shared/resources/infinispan
+COPY --chown=1001:0 target/docker-liberty/lib/hazelcast /opt/ol/wlp/usr/shared/resources/hazelcast
 
 RUN configure.sh
