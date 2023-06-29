@@ -13,4 +13,9 @@
                       statistics="true">
     </replicated-cache>
   </cache-container>
+<!-- alt:
+  <cache-container>
+    <transport stack="jgroups-kubernetes" />
+  </cache-container>
+-->
 </infinispan>
