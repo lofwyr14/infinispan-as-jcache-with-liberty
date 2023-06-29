@@ -1,4 +1,4 @@
-FROM open-liberty:23.0.0.4-full-java11-openj9
+FROM open-liberty:23.0.0.7-full-java11-openj9
 
 ARG VERSION=1.0
 ARG REVISION=SNAPSHOT
@@ -21,6 +21,6 @@ LABEL \
 
 COPY --chown=1001:0 src/main/liberty/config /config/
 COPY --chown=1001:0 target/guide-sessions.war /config/apps
-COPY --chown=1001:0 target/docker-liberty/lib/infinispan /opt/ol/wlp/usr/shared/resources/infinispan
+COPY --chown=1001:0 target/docker-liberty/lib/postgres /opt/ol/wlp/usr/shared/resources/postgres
 
 RUN configure.sh

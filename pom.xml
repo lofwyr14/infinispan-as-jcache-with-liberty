@@ -9,8 +9,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <java.version>11</java.version>
         <infinispan.version>11.0.17.Final</infinispan.version>
         <tobago.version>5.7.2</tobago.version>
         <!-- Liberty configuration -->
@@ -25,13 +24,13 @@
         <dependency>
             <groupId>jakarta.platform</groupId>
             <artifactId>jakarta.jakartaee-api</artifactId>
-            <version>8.0.0</version>
+            <version>10.0.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.eclipse.microprofile</groupId>
             <artifactId>microprofile</artifactId>
-            <version>3.3</version>
+            <version>6.0</version>
             <type>pom</type>
             <scope>provided</scope>
         </dependency>
@@ -43,7 +42,7 @@
             <version>5.2.3</version>
             <scope>test</scope>
         </dependency-->
-        <dependency>
+        <!--dependency>
             <groupId>org.infinispan</groupId>
             <artifactId>infinispan-jcache</artifactId>
             <version>${infinispan.version}</version>
@@ -52,7 +51,7 @@
             <groupId>org.infinispan</groupId>
             <artifactId>infinispan-cdi-embedded</artifactId>
             <version>${infinispan.version}</version>
-        </dependency>
+        </dependency-->
 
         <!-- For tests -->
         <dependency>
@@ -79,12 +78,27 @@
             <version>2.0.1</version>
             <scope>test</scope>
         </dependency>
-        
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.6.0</version>
+        </dependency>
     </dependencies>
 
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <release>${java.version}</release>
+                    <encoding>UTF-8</encoding>
+                    <showWarnings>true</showWarnings>
+                    <useIncrementalCompilation>false</useIncrementalCompilation>
+                </configuration>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -96,18 +110,17 @@
                 <artifactId>maven-dependency-plugin</artifactId>
                 <executions>
                     <execution>
-                        <id>copy derby dependency for docker</id>
+                        <id>copy postgres dependency for docker</id>
                         <phase>package</phase>
                         <goals>
                             <goal>copy-dependencies</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${project.build.directory}/docker-liberty/lib/derby
-                            </outputDirectory>
-                            <includeGroupIds>org.apache.derby</includeGroupIds>
+                            <outputDirectory>${project.build.directory}/docker-liberty/lib/postgres</outputDirectory>
+                            <includeGroupIds>org.postgresql</includeGroupIds>
                         </configuration>
                     </execution>
-                    <execution>
+                    <!--execution>
                         <id>copy infinispan dependencies for docker</id>
                         <phase>package</phase>
                         <goals>
@@ -123,7 +136,7 @@
                             <excludeArtifactIds>infinispan-jcache-remote,infinispan-client-hotrod
                             </excludeArtifactIds>
                         </configuration>
-                    </execution>
+                    </execution-->
                 </executions>
             </plugin>
 

@@ -2,13 +2,13 @@
         description="Liberty Server for Sessions Management">
 
     <featureManager>
-        <feature>jsonb-1.0</feature>
-        <feature>jsonp-1.1</feature>
-        <feature>mpOpenAPI-1.1</feature>
-        <feature>jakartaee-8.0</feature>
-        <feature>mpConfig-1.3</feature>
-        <feature>mpHealth-2.2</feature>
-        <feature>sessionCache-1.0</feature>
+        <feature>jsonb-3.0</feature>
+        <feature>jsonp-2.1</feature>
+        <feature>mpOpenAPI-3.1</feature>
+        <feature>jakartaee-10.0</feature>
+        <feature>mpConfig-3.0</feature>
+        <feature>mpHealth-4.0</feature>
+        <feature>sessionDatabase-1.0</feature>
     </featureManager>
 
     <variable name="default.http.port" defaultValue="9080"/>
@@ -18,7 +18,7 @@
     <httpEndpoint httpPort="${default.http.port}" httpsPort="${default.https.port}"
                   id="defaultHttpEndpoint" host="*"/>
 
-    <library id="JCacheLib">
+    <!--library id="JCacheLib">
         <fileset dir="${shared.resource.dir}/infinispan"/>
     </library>
 
@@ -28,7 +28,25 @@
 
     <cacheManager id="CacheManager" uri="file:${server.config.dir}/infinispan.xml">
         <cachingProvider jCacheLibraryRef="JCacheLib"/>
-    </cacheManager>
+    </cacheManager-->
+    <dataSource id="SessionsDS">
+        <jdbcDriver libraryRef="postgreslib"/>
+        <properties serverName="${env.POSTGRES_SERVER}"
+                    portNumber="${env.POSTGRES_PORT}"
+                    databaseName="${env.POSTGRES_DB}"
+                    user="${env.POSTGRES_USER}"
+                    password="${env.POSTGRES_PASSWORD}"/>
+        <connectionManager agedTimeout="0" connectionTimeout="180" maxIdleTime="1800" maxPoolSize="10" minPoolSize="1"
+                           reapTime="180"/>
+    </dataSource>
+
+    <httpSessionDatabase id="SessionDB" dataSourceRef="SessionsDS" writeContents="GET_AND_SET_ATTRIBUTES"
+                         useMultiRowSchema="false"/>
+    <httpSession cloneId="${env.HOSTNAME}"/>
+
+    <library id="postgreslib">
+        <fileset dir="${shared.resource.dir}/postgres"/>
+    </library>
 
     <webApplication location="guide-sessions.war" contextRoot="${app.context.root}"/>
 

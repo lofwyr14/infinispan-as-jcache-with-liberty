@@ -1,4 +1,4 @@
-# Mit Infinispan
+# Mit PostgreSQL
 
 Bauen
 ```
